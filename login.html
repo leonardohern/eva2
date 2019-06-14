@@ -1,73 +1,161 @@
-!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!--Meta Tags-->
+  <meta charset="UTF-8">
+  <!--
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!--
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    -->
+  
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>LOGIN BIBLIOTECA</title>
+  <!--Firestore-->
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 
-    <title>Login Biblioteca</title>
-    <!--Firestore-->
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 </head>
 
-<body>
-    <!--BLOG-->
-    <div class="container">
-        <h2 class="my-5 text-center text-primary">Bienvenido a su Biblioteca</h2>
-        <hr>
-      </div>
-      <!--BLOG FIN-->
-  
-      <!--Imagenes-->
-      <div class="bd-example">
-        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="img/librop1.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>primera slide</h5>
-                <p>subtitulo</p>
-               <button>hola</button>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="img/librop2.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="img/librop3.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              </div>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+<body class="grey lighten-3">
+  <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul id="nav-mobile" class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="logged-in">
+          <a href="#" class="nav-item modal-trigger" data-target="modal-account">Account</a>
+        </li>
+        <li class="logged-in">
+          <a href="#" class="nav-item" id="logout">Logout</a>
+        </li>
+        <li class="logged-in">
+          <a href="#" class="nav-item modal-trigger" data-target="modal-create">Create Guide</a>
+        </li>
+        <li class="logged-out">
+          <a href="#" class="nav-item modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out">
+          <a href="#" class="nav-item grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        </span>
+      </ul>
+
+    </div>
+  </nav>
+  <!-- NAVBAR -->
+
+
+  <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content" style="width:100%; height:100% ;">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
         </div>
-        <hr>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn btn-dark z-depth-0">Sign up</button>
+        <input  class= "btn btn-dark" value="Volver" onclick="history.go(0)" type="button"> 
+      </form>
+    </div>
+  </div>
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+      <div class="modal-content">
+        <h4>Login</h4><br />
+        <form id="login-form">
+          <div class="input-field">
+            <input type="email" id="login-email" required />
+            <label for="login-email">Email address</label>
+          </div>
+          <div class="input-field">
+            <input type="password" id="login-password" required />
+            <label for="login-password">Your password</label>
+          </div>
+          <button class="btn yellow darken-2 z-depth-0">Login</button>
+          <input  class= "btn btn-dark" value="Volver" onclick="history.go(0)" type="button">
+        </form>
       </div>
-      <!--Imagenes-->
+    </div>
+  
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+  <!-- CREATE GUIDE MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Guide</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Guide Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Guide Content</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Create</button>
+        <input  class= "btn btn-dark" value="Volver" onclick="history.go(0)" type="button">
+      </form>
+    </div>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA3s9l-TPxv4SmKEKwIwDdkaetZT_w5EN8",
+      authDomain: "eva2-a07b3.firebaseapp.com",
+      databaseURL: "https://eva2-a07b3.firebaseio.com",
+      projectId: "eva2-a07b3",
+
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    //Cons
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  //db.settings({ timestampsInSnapshots: true});
+  </script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="scripts/auth.js"></script>
+  <script src="scripts/index.js"></script>
+ 
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+
 </body>
 
 </html>
