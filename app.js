@@ -1,7 +1,7 @@
 firebase.initializeApp({
-    apiKey: "AIzaSyDMESH6VlSDwD1d2Xpd5OmPuDcWmllpy9U",
-    authDomain: "eva2-9dfe7.firebaseapp.com",
-    projectId: "eva2-9dfe7"
+    apiKey: "",
+    authDomain: "",
+    projectId: ""
   });
 
 // Initialize Cloud Firestore through Firebase
