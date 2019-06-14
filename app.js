@@ -10,11 +10,11 @@ var db = firebase.firestore();
 function guardar() {
     //Agregar Datos a BD
     var autor = document.getElementById('Autor').value;
-    var titulo = document.getElementById('titulo').value;
+    var titulotituloti = document.getElementById('titulo').value;
     var fecha = document.getElementById('fecha_de_publicacion').value;
     db.collection("libros").add({
         Autor: autor,
-        titulo: titulo,
+        titulo: titulotituloti,
         fecha_de_publicacion: fecha
     })
         .then(function (docRef) {
